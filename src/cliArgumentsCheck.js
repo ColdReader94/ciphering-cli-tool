@@ -30,10 +30,18 @@ export default function cliArgumentsCheck() {
     Options.cipher = Options.cipher.split('-');
 
     readStream
-      .on('error', (error) => process.stderr.write(error.name))
+      .on('error', (error) => {
+        process.stderr.write(error.name);
+        process.exit(1);
+      })
       .pipe(transformStream)
-      .on('error', (error) => process.stderr.write(error.name))
+       .on('error', (error) => {
+        process.stderr.write(error.name);
+        process.exit(1);
+      })
       .pipe(writeStream)
-      .on('error', (error) => process.stderr.write(error.name));
+       .on('error', (error) => {
+        process.stderr.write(error.name);
+      });
   }
 }
