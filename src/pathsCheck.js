@@ -10,13 +10,13 @@ export default function pathsCheck() {
   const inputIndex = process.argv.indexOf(constants.INPUT);
   const inputAliasIndex = process.argv.indexOf(constants.INPUT_ALIAS);
   const outputIndex = process.argv.indexOf(constants.OUTPUT);
-  const outputAliasIndex = process.argv.indexOf(constants.OUTPUT_ALIAS);    
+  const outputAliasIndex = process.argv.indexOf(constants.OUTPUT_ALIAS);
   const argIndex =
   inputAliasIndex === -1 ? inputIndex : inputAliasIndex;
   const argOutputIndex =
   outputAliasIndex === -1 ? outputIndex : outputAliasIndex;
-  let readableStream = fs.createReadStream(process.argv[argIndex + 1], "utf-8");
-  let writableStream = fs.createWriteStream(process.argv[argOutputIndex + 1], "utf-8");
+  let readableStream;
+  let writableStream;
   try {
     if (checkRepeats(process.argv)) {
       throw new CliArgumentRepeatError();

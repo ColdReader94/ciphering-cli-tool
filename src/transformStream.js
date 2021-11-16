@@ -2,15 +2,12 @@ import { Transform } from "stream";
 import { ALPHABET_LOWERCASE, ALPHABET_UPPERCASE } from "./constants.js";
 import { Options } from "./options.js";
 import {
-  WrongOutputError,
-  WrongInputError,
   WrongConfigError,
   WrongAtbashCipher,
   WrongCaeserCipher,
   WrongRot8Cipher,
 } from "./customErrors.js";
 import * as constants from "./constants.js";
-import { exit } from "process";
 
 function indexCheck(index) {
   if (index > ALPHABET_LOWERCASE.length) {
