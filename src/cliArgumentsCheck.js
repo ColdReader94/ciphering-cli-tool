@@ -18,10 +18,7 @@ export default function cliArgumentsCheck() {
       if (configAliasIndex !== -1) {
         Options.cipher = process.argv[configAliasIndex + 1];
       }
-      else if(configIndex !== -1) {
-        Options.cipher = process.argv[configIndex + 1];
-      }
-      else {
+      if (configAliasIndex === -1 && configIndex === -1) {
         throw new MissedConfigError();
       }
       if (!constants.LAYOUT.test(Options.cipher)) {
@@ -31,8 +28,8 @@ export default function cliArgumentsCheck() {
       process.stderr.write(error.name);
     }
 
-    Options.cipher = Options.cipher.split('-');
 
+    Options.cipher = Options.cipher.split('-');
     readStream
       .on('error', (error) => {
         process.stderr.write(error.name);

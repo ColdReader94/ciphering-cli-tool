@@ -18,9 +18,9 @@ export const INPUT = '--input';
 
 export const OUTPUT_ALIAS = '-o';
 
-export const CONFIG = '-c';
+export const CONFIG_ALIAS = '-c';
 
-export const CONFIG_ALIAS = '--config';
+export const CONFIG = '--config';
 
 export const OUTPUT = '--output';
 
