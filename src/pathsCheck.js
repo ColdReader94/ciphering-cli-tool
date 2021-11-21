@@ -17,12 +17,11 @@ export default function pathsCheck() {
   outputAliasIndex === -1 ? outputIndex : outputAliasIndex;
   let readableStream;
   let writableStream;
-  try {
     if (checkRepeats(process.argv)) {
       throw new CliArgumentRepeatError();
     }
     if (argIndex !== -1) {
-      fs.stat(process.argv[argIndex + 1], function(err) {  
+      fs.statSync(process.argv[argIndex + 1], function(err) {  
         if (err) {
           throw new WrongInputError();
         } 
@@ -33,7 +32,7 @@ export default function pathsCheck() {
     }
 
     if (argOutputIndex !== -1) {
-      fs.stat(process.argv[argOutputIndex + 1], function(err) {
+      fs.statSync(process.argv[argOutputIndex + 1], function(err) {
         if (err) {
           throw new WrongOutputError();
         } 
@@ -45,10 +44,6 @@ export default function pathsCheck() {
     } else {
       writableStream = process.stdout;
     }
-  } catch (error) {
-    process.stderr.write(error.name);
-  }
   const streams = [readableStream, writableStream];
-
   return streams;
 }

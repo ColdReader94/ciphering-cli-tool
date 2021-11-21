@@ -10,8 +10,8 @@ export default function cliArgumentsCheck() {
 
   const [readStream, writeStream] = pathsCheck();
 
-  if (arguments[0]) {
-    try {
+
+
       if (configIndex !== -1) {
         Options.cipher = process.argv[configIndex + 1];
       }
@@ -24,9 +24,7 @@ export default function cliArgumentsCheck() {
       if (!constants.LAYOUT.test(Options.cipher)) {
         throw new WrongConfigError();
       }
-    } catch (error) {
-      process.stderr.write(error.name);
-    }
+  
 
 
     Options.cipher = Options.cipher.split('-');
@@ -42,5 +40,4 @@ export default function cliArgumentsCheck() {
        .on('error', (error) => {
         process.stderr.write(error.name);
       });
-  }
 }
